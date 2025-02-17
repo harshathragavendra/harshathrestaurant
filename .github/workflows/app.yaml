@@ -1,0 +1,34 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /scripts
+  static_dir: scripts
+
+- url: /
+  static_files: index.html
+  upload: index.html
+
+- url: /menu
+  static_files: menu.html
+  upload: menu.html
+
+- url: /payment
+  static_files: payment.html
+  upload: payment.html
+
+- url: /thankyou
+  static_files: thankyou.html
+  upload: thankyou.html
+
+- url: /receipt
+  static_files: receipt.html
+  upload: receipt.html
+
+
+
+
+
+  
+

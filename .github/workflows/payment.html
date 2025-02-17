@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Set title -->
+        <title>Restaurant Ordering App</title>
+        
+        <!-- Latest compiled and minified CSS Bootstrap-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Enable JQuery -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        
+        <!-- Latest compiled and minified JavaScript Bootstrap -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <!-- Enable Google OAuth API for sign in/out -->
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+        <meta name="google-signin-client_id" content="436284681417-gnns65dasicsl1719kbqacgnt1vd57da.apps.googleusercontent.com">
+        
+        <!-- Include smtpjs to send email on the client side-->
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <!-- <script src="https://smtpjs.com/v2/smtp.js"></script> -->
+
+        <!-- Enable AWS Cloud Services API -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+
+        <!-- Enable Google Places API-->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUX1QaHPDB3xtuHHSF6W1dNPkqPHEh45w&amp;libraries=places"></script>
+
+        <!-- Include the script for sign in/out, cart manipulation, writing to db, and Google Pay -->
+        <!-- <script src="/scripts/sendgrid-config.js"></script> -->
+        <script src="/scripts/aws-config.js"></script>
+        <script src="/scripts/main.js"></script>
+        <script src="/scripts/payment.js"></script>
+        
+        
+        
+    </head>
+  
+    <body onload="fetchOrderSummary()">
+        <div class="container">
+        
+        <!-- Sign out button -->
+        <button onclick="signOut();" class="btn btn-light">Sign out</button>
+
+        <!-- Send email button -->
+        <button onclick="sendEmail();" class="btn btn-light">Send email</button>
+
+        <div class="alert alert-info" role="alert">
+            <div id = "payBanner"></div>
+        </div>
+
+        <h1>HARSHATH FOOD SERVICES <small>Good food at your fingertips!Just taste it!</small></h1>
+        <p><br/></p>
+
+        <!-- List all food items -->
+
+        <div class="col-sm-3"  id="orderSummary"></div>
+
+        <div class="col-sm-2"> </div>
+
+        <!-- List all cart items -->
+        <div class="col-sm-7" id="paymentForm">
+            <div class="jumbotron">
+                <h3>Delivery information</h3>
+                
+                
+
+                <form id="paymentInputForm">
+
+                    <!-- Search for your address -->
+                    <label for="addressSearch">Search your address</label>
+                    <!-- <div id="custom-search-input"> -->
+                        <div class="form-group">
+                            <input id="address_search" name="address_search" type="text" class="form-control" placeholder="Enter delivery address here"/>
+                            <input type="hidden" name="lat">
+                            <input type="hidden" name="long">
+                        </div>
+                    <!-- </div> -->
+                    
+                    <!-- Choose delivery method -->
+                    <div class="form-group">
+                        <label for="shippingMethodInput">Delivery method</label>
+                        <select id="shippingMethodInput" class="form-control">
+                            <option value="Collect at the restaurant">Collect at the restaurant</option>
+                            <option value="Deliver to your address">Deliver to your address</option>
+                            <option value="Dine-in at the restaurant">Dine-in at the restaurant</option>
+                        </select>
+                    </div>
+
+                    <!-- Or enter your address manually -->
+                    <label>Or you can type manually... <p></p></label>
+
+                    
+
+                    <div class="form-group">
+                    <label for="addressInput">Street name</label>
+                    <input type="text" class="form-control" id="addressInput" placeholder="32/1,Kaani Nilam">
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label for="cityInput">City</label>
+                        <input type="text" class="form-control" id="cityInput" placeholder="Coimbatore">
+                    </div>
+
+                    <div class="form-group">
+                            <label for="stateInput">State</label>
+                            <input type="text" class="form-control" id="stateInput" placeholder="Tamil Nadu">
+                        </div>
+                    <div class="form-group">
+                        <label for="zipCode">Zip code</label>
+                        <input type="text" class="form-control" id="zipCode" placeholder="641035">
+                    </div>
+                </form>       
+            </div>
+        </div>
+      
+
+        <!-- Add the Google Pay button  -->
+        <script async
+                src="https://pay.google.com/gp/p/js/pay.js"
+                onload="onGooglePayLoaded()">
+        </script>
+  
+
+        </div>
+
+        <!-- Define components in the footer -->
+        <div class="col-lg-12">
+            <div class="footer">
+                <p>&copy <a href="http://google.com" target="_blank">Harshath Ragavendra 2025</a></p>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+    
